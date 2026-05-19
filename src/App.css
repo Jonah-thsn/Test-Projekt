@@ -1,18 +1,16 @@
 :root {
-  /* NEW AG Corporate Colors */
-  --new-cyan: #009fe3;
-  --new-cyan-hover: #0082ba;
-  --new-navy: #003366;
-  --new-green: #87B400;
+  /* NEW AG Corporate Colors (Updated) */
+  --new-primary: #9b004b;
+  --new-primary-hover: #7a003b;
   
-  --primary-color: var(--new-cyan);
-  --primary-hover: var(--new-cyan-hover);
+  --primary-color: var(--new-primary);
+  --primary-hover: var(--new-primary-hover);
   --secondary-color: #f3f4f6;
   --secondary-hover: #e5e7eb;
   
   --text-main: #1f2937;
   --text-muted: #6b7280;
-  --bg-color: #f8fafc;
+  --bg-color: #ffffff; /* Rest ist weiß */
   --card-bg: #ffffff;
   --danger: #ef4444;
   --danger-bg: #fef2f2;
@@ -47,7 +45,7 @@ body {
 .inline-block { display: inline-block; }
 .font-semibold { font-weight: 600; }
 .font-medium { font-weight: 500; }
-.text-primary { color: var(--new-navy); }
+.text-primary { color: var(--text-main); }
 .text-muted { color: var(--text-muted); font-size: 0.85rem; }
 
 /* Typography */
@@ -55,12 +53,12 @@ body {
   font-size: 2rem;
   font-weight: 800;
   margin: 0 0 0.5rem 0;
-  color: var(--new-navy);
+  color: var(--text-main);
   letter-spacing: -0.02em;
 }
 
 .brand-new {
-  color: var(--new-cyan);
+  color: var(--new-primary);
 }
 
 .subtitle {
@@ -117,7 +115,7 @@ body {
 
 .btn-secondary {
   background-color: var(--secondary-color);
-  color: var(--new-navy);
+  color: var(--text-main);
 }
 
 .btn-secondary:hover:not(:disabled) {
@@ -153,7 +151,7 @@ body {
 .form-group label {
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--new-navy);
+  color: var(--text-main);
 }
 
 input[type="text"],
@@ -175,7 +173,7 @@ input:focus,
 textarea:focus,
 select.form-select:focus {
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(0, 159, 227, 0.15);
+  box-shadow: 0 0 0 3px rgba(155, 0, 75, 0.15);
 }
 
 .file-input {
@@ -324,7 +322,7 @@ select.form-select:focus {
   margin: 0;
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--new-navy);
+  color: var(--text-main);
 }
 
 .report-meta {
@@ -386,12 +384,12 @@ select.form-select:focus {
 .empty-icon {
   font-size: 4rem;
   margin-bottom: 1rem;
-  color: var(--new-cyan);
+  color: var(--new-primary);
 }
 
 .empty-state h3 {
   margin: 0 0 0.5rem 0;
-  color: var(--new-navy);
+  color: var(--text-main);
   font-size: 1.5rem;
 }
 
