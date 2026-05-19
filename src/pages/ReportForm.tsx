@@ -8,6 +8,7 @@ export default function ReportForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
+  const [category, setCategory] = useState("Strom");
   const [files, setFiles] = useState<FileList | null>(null);
   const [uploading, setUploading] = useState(false);
   const navigate = useNavigate();
@@ -36,6 +37,8 @@ export default function ReportForm() {
         title,
         description,
         location,
+        category,
+        status: "Gemeldet", // Default status
         photoUrls,
         ownerUid,
         createdAt: new Date().toISOString()
@@ -53,15 +56,32 @@ export default function ReportForm() {
   return (
     <div className="page-container">
       <div className="card report-form-card">
-        <h1 className="page-title">Neue Meldung erstellen</h1>
-        <p className="subtitle mb-6">Bitte beschreiben Sie den Schaden möglichst genau und fügen Sie Fotos hinzu.</p>
+        <h1 className="page-title">Schaden melden</h1>
+        <p className="subtitle mb-6">Bitte beschreiben Sie den Vorfall für die NEW AG detailliert, damit wir schnell handeln können.</p>
         
         <form onSubmit={handleSubmit} className="modern-form">
+          <div className="form-group">
+            <label>Kategorie</label>
+            <select 
+              value={category} 
+              onChange={(e) => setCategory(e.target.value)}
+              required
+              className="form-select"
+            >
+              <option value="Strom">Strom</option>
+              <option value="Gas">Gas</option>
+              <option value="Wasser">Wasser</option>
+              <option value="Wärme">Wärme</option>
+              <option value="Beleuchtung">Straßenbeleuchtung</option>
+              <option value="Sonstiges">Sonstiges</option>
+            </select>
+          </div>
+
           <div className="form-group">
             <label>Titel der Meldung</label>
             <input 
               type="text" 
-              placeholder="z.B. Wasserschaden im Bad" 
+              placeholder="Kurze Zusammenfassung" 
               value={title} 
               onChange={(e) => setTitle(e.target.value)} 
               required 
@@ -83,7 +103,7 @@ export default function ReportForm() {
             <label>Ort / Adresse</label>
             <input 
               type="text" 
-              placeholder="z.B. Musterstraße 1, 12345 Stadt" 
+              placeholder="Straße, Hausnummer, PLZ Ort" 
               value={location} 
               onChange={(e) => setLocation(e.target.value)} 
               required 
@@ -91,7 +111,7 @@ export default function ReportForm() {
           </div>
           
           <div className="form-group">
-            <label>Fotos (optional, mehrfach möglich)</label>
+            <label>Fotos (optional)</label>
             <input 
               type="file" 
               multiple 
@@ -99,6 +119,7 @@ export default function ReportForm() {
               onChange={(e) => setFiles(e.target.files)} 
               className="file-input"
             />
+            <small className="text-muted mt-2">Bilder helfen unseren Technikern, die Situation besser einzuschätzen.</small>
           </div>
 
           <div className="form-actions mt-6">
@@ -106,7 +127,7 @@ export default function ReportForm() {
               Abbrechen
             </button>
             <button type="submit" className="btn btn-primary" disabled={uploading}>
-              {uploading ? "Wird hochgeladen..." : "Meldung absenden"}
+              {uploading ? "Wird gesendet..." : "Meldung einreichen"}
             </button>
           </div>
         </form>
