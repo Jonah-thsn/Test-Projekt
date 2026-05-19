@@ -51,42 +51,66 @@ export default function ReportForm() {
   };
 
   return (
-    <div className="report-form">
-      <h1>Neue Meldung erstellen</h1>
-      <form onSubmit={handleSubmit}>
-        <input 
-          type="text" 
-          placeholder="Titel" 
-          value={title} 
-          onChange={(e) => setTitle(e.target.value)} 
-          required 
-        />
-        <textarea 
-          placeholder="Beschreibung" 
-          value={description} 
-          onChange={(e) => setDescription(e.target.value)} 
-          required 
-        />
-        <input 
-          type="text" 
-          placeholder="Ort" 
-          value={location} 
-          onChange={(e) => setLocation(e.target.value)} 
-          required 
-        />
-        <input 
-          type="file" 
-          multiple 
-          accept="image/*" 
-          onChange={(e) => setFiles(e.target.files)} 
-        />
-        <div className="form-actions">
-          <button type="submit" disabled={uploading}>
-            {uploading ? "Wird hochgeladen..." : "Meldung senden"}
-          </button>
-          <button type="button" onClick={() => navigate("/")} disabled={uploading}>Abbrechen</button>
-        </div>
-      </form>
+    <div className="page-container">
+      <div className="card report-form-card">
+        <h1 className="page-title">Neue Meldung erstellen</h1>
+        <p className="subtitle mb-6">Bitte beschreiben Sie den Schaden möglichst genau und fügen Sie Fotos hinzu.</p>
+        
+        <form onSubmit={handleSubmit} className="modern-form">
+          <div className="form-group">
+            <label>Titel der Meldung</label>
+            <input 
+              type="text" 
+              placeholder="z.B. Wasserschaden im Bad" 
+              value={title} 
+              onChange={(e) => setTitle(e.target.value)} 
+              required 
+            />
+          </div>
+          
+          <div className="form-group">
+            <label>Beschreibung</label>
+            <textarea 
+              placeholder="Genaue Beschreibung des Schadens..." 
+              value={description} 
+              onChange={(e) => setDescription(e.target.value)} 
+              required 
+              rows={4}
+            />
+          </div>
+          
+          <div className="form-group">
+            <label>Ort / Adresse</label>
+            <input 
+              type="text" 
+              placeholder="z.B. Musterstraße 1, 12345 Stadt" 
+              value={location} 
+              onChange={(e) => setLocation(e.target.value)} 
+              required 
+            />
+          </div>
+          
+          <div className="form-group">
+            <label>Fotos (optional, mehrfach möglich)</label>
+            <input 
+              type="file" 
+              multiple 
+              accept="image/*" 
+              onChange={(e) => setFiles(e.target.files)} 
+              className="file-input"
+            />
+          </div>
+
+          <div className="form-actions mt-6">
+            <button type="button" className="btn btn-secondary" onClick={() => navigate("/")} disabled={uploading}>
+              Abbrechen
+            </button>
+            <button type="submit" className="btn btn-primary" disabled={uploading}>
+              {uploading ? "Wird hochgeladen..." : "Meldung absenden"}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

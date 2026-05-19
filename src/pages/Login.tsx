@@ -8,11 +8,13 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [isSignup, setIsSignup] = useState(false);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
     try {
       if (isSignup) {
         await createUserWithEmailAndPassword(auth, email, password);
@@ -21,34 +23,71 @@ export default function Login() {
       }
       navigate("/");
     } catch (err: any) {
-      setError(err.message);
+      let errorMsg = "Ein Fehler ist aufgetreten.";
+      if (err.code === 'auth/invalid-credential' || err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found') {
+        errorMsg = "Ungültige E-Mail oder falsches Passwort.";
+      } else if (err.code === 'auth/email-already-in-use') {
+        errorMsg = "Diese E-Mail-Adresse wird bereits verwendet.";
+      } else if (err.code === 'auth/weak-password') {
+        errorMsg = "Das Passwort ist zu schwach.";
+      }
+      setError(errorMsg);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="login-container">
-      <h1>{isSignup ? "Registrieren" : "Login"}</h1>
-      <form onSubmit={handleSubmit}>
-        <input 
-          type="email" 
-          placeholder="Email" 
-          value={email} 
-          onChange={(e) => setEmail(e.target.value)} 
-          required 
-        />
-        <input 
-          type="password" 
-          placeholder="Passwort" 
-          value={password} 
-          onChange={(e) => setPassword(e.target.value)} 
-          required 
-        />
-        <button type="submit">{isSignup ? "Konto erstellen" : "Anmelden"}</button>
-      </form>
-      {error && <p className="error">{error}</p>}
-      <button className="toggle-btn" onClick={() => setIsSignup(!isSignup)}>
-        {isSignup ? "Bereits ein Konto? Login" : "Noch kein Konto? Registrieren"}
-      </button>
+    <div className="login-wrapper">
+      <div className="card login-card">
+        <div className="login-header">
+          <div className="login-logo">📋</div>
+          <h1 className="page-title">{isSignup ? "Konto erstellen" : "Willkommen zurück"}</h1>
+          <p className="subtitle">{isSignup ? "Registrieren Sie sich für Schadensmeldungen" : "Bitte melden Sie sich an, um fortzufahren"}</p>
+        </div>
+        
+        <form onSubmit={handleSubmit} className="modern-form">
+          {error && <div className="error-card mb-4">{error}</div>}
+          
+          <div className="form-group">
+            <label>E-Mail Adresse</label>
+            <input 
+              type="email" 
+              placeholder="ihre@email.de" 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              required 
+            />
+          </div>
+          
+          <div className="form-group">
+            <label>Passwort</label>
+            <input 
+              type="password" 
+              placeholder="••••••••" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              required 
+            />
+          </div>
+          
+          <button type="submit" className="btn btn-primary w-full mt-2" disabled={loading}>
+            {loading ? "Wird geladen..." : (isSignup ? "Registrieren" : "Anmelden")}
+          </button>
+        </form>
+        
+        <div className="login-footer">
+          <p className="subtitle">
+            {isSignup ? "Bereits ein Konto?" : "Noch kein Konto?"}
+          </p>
+          <button className="btn-text" onClick={() => {
+            setIsSignup(!isSignup);
+            setError("");
+          }}>
+            {isSignup ? "Hier anmelden" : "Hier registrieren"}
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
