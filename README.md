@@ -1,17 +1,5 @@
-# Paperclip Dev (React)
+# Paperclip Dev
+
+React + Vite + Firebase Hosting demo, fully managed by Paperclip AI agents.
 
 Live: https://paperclip-dev-8e944.web.app
-
-Stack: Vite + React + TypeScript, Firebase Hosting
-
-## Run
-
-Local:
-```bash
-npm install && npm run dev
-```
-
-Prod:
-```bash
-npm run build && firebase deploy --only hosting
-```
