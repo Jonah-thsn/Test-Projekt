@@ -1,12 +1,37 @@
-import { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import ReportForm from "./pages/ReportForm";
+import ProtectedRoute from "./components/ProtectedRoute";
+import "./App.css";
 
-export default function App() {
-  const [count, setCount] = useState(0)
+function App() {
   return (
-    <main>
-      <h1>Paperclip Dev (React)</h1>
-      <p>Built with React + Vite. Deployed to Firebase Hosting by Paperclip AI agents.</p>
-      <button onClick={() => setCount(c => c + 1)}>count is {count}</button>
-    </main>
-  )
+    <Router>
+      <div className="app-container">
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route 
+            path="/" 
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/new-report" 
+            element={
+              <ProtectedRoute>
+                <ReportForm />
+              </ProtectedRoute>
+            } 
+          />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </div>
+    </Router>
+  );
 }
+
+export default App;
