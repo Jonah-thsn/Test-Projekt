@@ -11,6 +11,10 @@ app.get('/', (req, res) => {
   res.send('Club Management System API');
 });
 
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok' });
+});
+
 // Member API Endpoints (NEW-34)
 
 // GET /members - List all members
