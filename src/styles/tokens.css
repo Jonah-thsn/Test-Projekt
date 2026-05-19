@@ -1,0 +1,77 @@
+:root {
+  /* NEW Gruppe Brand Colors */
+  --new-primary: #9b004b;
+  --new-primary-rgb: 155, 0, 75;
+  --new-primary-hover: #7a003b;
+  --new-secondary: #003366;
+  --new-accent: #009fe3;
+  
+  /* Neutrals */
+  --new-neutral-0: #ffffff;
+  --new-neutral-50: #f9fafb;
+  --new-neutral-100: #f3f4f6;
+  --new-neutral-200: #e5e7eb;
+  --new-neutral-300: #d1d5db;
+  --new-neutral-400: #9ca3af;
+  --new-neutral-500: #6b7280;
+  --new-neutral-600: #4b5563;
+  --new-neutral-700: #374151;
+  --new-neutral-800: #1f2937;
+  --new-neutral-900: #111827;
+
+  /* Spacing Tokens */
+  --spacer-8: 8px;
+  --spacer-16: 16px;
+  --spacer-24: 24px;
+  --spacer-32: 32px;
+  --spacer-48: 48px;
+  --spacer-64: 64px;
+
+  /* Grid Tokens */
+  --grid-max-width: 1280px;
+  --grid-columns: 12;
+  --grid-gutter: 24px;
+
+  /* Typography Tokens */
+  --font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  
+  /* Headline Variante 1 (H1) */
+  --typo-h1-size: 3.5rem;
+  --typo-h1-lineheight: 1.1;
+  --typo-h1-weight: 800;
+  
+  /* Headline Variante 2 (H2) */
+  --typo-h2-size: 2.25rem;
+  --typo-h2-lineheight: 1.2;
+  --typo-h2-weight: 700;
+  
+  /* Headline Title h3 (H3) */
+  --typo-h3-size: 1.5rem;
+  --typo-h3-lineheight: 1.3;
+  --typo-h3-weight: 700;
+
+  /* Copy Variants */
+  --typo-copy-intro-size: 1.25rem;
+  --typo-copy-intro-lineheight: 1.6;
+  
+  --typo-copy-size: 1rem;
+  --typo-copy-lineheight: 1.5;
+  
+  --typo-copy-medium-size: 1.125rem;
+  --typo-copy-medium-lineheight: 1.6;
+  
+  --typo-copy-small-size: 0.875rem;
+  --typo-copy-small-lineheight: 1.4;
+
+  /* Border Radius */
+  --radius-none: 0;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
